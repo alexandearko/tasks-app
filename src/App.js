@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+//  data
 import { todos } from "./todos.json";
 
+//  subComponents
 import Navigation from "./components/Navigation";
+import TodoForm from "./components/TodoForm";
 
 class App extends Component {
   constructor() {
@@ -36,10 +39,18 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation />
-        <img src={logo} className="App-logo" alt="logo" />
 
         <div className="container">
-          <div className="row mt4">{todos}</div>
+          <div className="row mt4">
+            <div className="col-md-4 text-center">
+              <img src={logo} className="App-logo" alt="logo" />
+              <TodoForm />
+            </div>
+
+            <div className="col-md-8">
+              <div className="row">{todos}</div>
+            </div>
+          </div>
         </div>
       </div>
     );
