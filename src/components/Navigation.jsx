@@ -4,10 +4,12 @@ class Navigation extends Component {
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark">
-        <a href="" className="text-white">
+        <a href="/" className="text-white">
           Tasks
+          <span className="badge badge-pill badge-light ml-2">
+            {this.props.nroTasks}
+          </span>
         </a>
-        <span className="badge badge-pill badge-light ml-2">4</span>
       </nav>
     );
   }

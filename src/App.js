@@ -8,6 +8,7 @@ import { todos } from "./todos.json";
 //  subComponents
 import Navigation from "./components/Navigation";
 import TodoForm from "./components/TodoForm";
+import TodoCard from "./components/TodoCard"
 
 class App extends Component {
   constructor() {
@@ -25,7 +26,8 @@ class App extends Component {
     })
   }
 
-  RemoveTodo(index) {
+  RemoveTodo = (index) => {
+    console.log(index)
     if(window.confirm('Are you sure you want to delete it?')) {
       this.setState({
         todos: this.state.todos.filter((e, i) => {
@@ -38,30 +40,12 @@ class App extends Component {
   render() {
     const todos = this.state.todos.map((todo, i) => {
       return (
-        <div className="col-md-4" key={i}>
-          <div className="card mt-4">
-            <div className="card-header">
-              <h3>{todo.title}</h3>
-              <span className="bagde badge-pill badge-danger ml-2">
-                {todo.priority}
-              </span>
-            </div>
-            <div className="card-body">
-              <p>{todo.description}</p>
-              <p>{todo.responsable}</p>
-            </div>
-            <div className="card-footer">
-              <button className="btn btn-danger" onClick={this.RemoveTodo.bind(this, i)}>
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
+        <TodoCard todo={todo} index={i} key={i} RemoveTodo={this.RemoveTodo.bind(this,i)} />
       );
     });
     return (
       <div className="App">
-        <Navigation />
+        <Navigation nroTasks={this.state.todos.length} />
 
         <div className="container">
           <div className="row mt4">
